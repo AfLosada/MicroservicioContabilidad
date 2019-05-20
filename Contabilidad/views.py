@@ -30,7 +30,7 @@ def guardarFactura(request):
 def buscarFactura(request):
     client = MongoClient(settings.MONGO_CLI)
     db = client.facturas_db
-    facturas = db['facturas']
+    facturas = db['facturas']['facturas']
     
     respo ={
         "MongoObjectID": str(facturas),
