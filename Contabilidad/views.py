@@ -32,10 +32,6 @@ def buscarFactura(request):
     collection = client.facturas
     facturas = collection['facturas']
     result = []
-    for factura in facturas:
-        jsonData = {
-            'fecha': factura.string(factura['fecha'])
-        }
     result.append(jsonData)
     client.close()
     return JsonResponse(str(facturas.find()), safe=False)
