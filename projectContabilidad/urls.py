@@ -19,5 +19,5 @@ from Contabilidad import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.guardarFactura, name = 'guardarFactura')
+    path('', views.buscarFactura, name = 'guardarFactura')
 ]

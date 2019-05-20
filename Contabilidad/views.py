@@ -25,3 +25,16 @@ def guardarFactura(request):
     }
     client.close()
     return JsonResponse(respo, safe=False)
+
+
+def buscarFactura(request):
+    client = MongoClient(settings.MONGO_CLI)
+    db = client.facturas_db
+    facturas = db['facturas']
+    
+    respo ={
+        "MongoObjectID": str(facturas),
+        "Message": "nuevo objeto en la base de datos"
+    }
+    client.close()
+    return JsonResponse(respo, safe=False)
