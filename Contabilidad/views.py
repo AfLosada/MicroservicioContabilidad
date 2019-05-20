@@ -38,4 +38,4 @@ def buscarFactura(request):
         }
     result.append(jsonData)
     client.close()
-    return JsonResponse(result, safe=False)
+    return JsonResponse(str(facturas.find()), safe=False)
