@@ -72,15 +72,15 @@ TEMPLATES = [
 WSGI_APPLICATION = 'projectContabilidad.wsgi.application'
 
 
-""" # Database
+# Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-} """
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.sqlite3',
+#        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#    }
+#}
 
 
 # Password validation
@@ -128,4 +128,4 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-MONGO_CLIENT = 'mongodb://PolillaOscura:<mofeta3117>@cluster0-shard-00-00-kuaxk.mongodb.net:27017,cluster0-shard-00-01-kuaxk.mongodb.net:27017,cluster0-shard-00-02-kuaxk.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true'
+MONGO_CLI = os.environ['MONGO_CLIENT']
