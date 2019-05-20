@@ -82,14 +82,6 @@ WSGI_APPLICATION = 'projectContabilidad.wsgi.application'
 #    }
 #}
 
-DATABASES = {
-   'default': {
-      'ENGINE': 'djongo',
-      'NAME': 'your-db-name',
-   }
-}
-
-
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
 
