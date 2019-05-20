@@ -8,6 +8,7 @@ from django.urls import reverse
 from django.core import serializers
 from django.http import JsonResponse
 from django.core import serializers
+from django.conf import settings
 from rest_framework.parsers import JSONParser
 from pymongo import MongoClient
 
