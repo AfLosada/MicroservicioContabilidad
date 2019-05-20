@@ -31,11 +31,11 @@ def buscarFactura(request):
     client = MongoClient(settings.MONGO_CLI)
     collection = client.facturas
     facturas = collection['facturas']
-
-    
-    respo ={
-        "MongoObjectID": str(facturas),
-        "Message": "nuevo objeto en la base de datos"
-    }
+    result = []
+    for factura in facturas:
+        jsonData = {
+            'fecha': factura.string(factura['fecha'])
+        }
+    result.append(jsonData)
     client.close()
-    return JsonResponse(respo, safe=False)
+    return JsonResponse(result, safe=False)
