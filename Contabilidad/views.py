@@ -31,7 +31,5 @@ def buscarFactura(request):
     client = MongoClient(settings.MONGO_CLI)
     collection = client.facturas
     facturas = collection['facturas']
-    result = []
-    result.append(jsonData)
     client.close()
     return JsonResponse(str(facturas.find()), safe=False)
