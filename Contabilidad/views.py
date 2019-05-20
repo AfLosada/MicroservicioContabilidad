@@ -32,4 +32,4 @@ def buscarFactura(request):
     collection = client.facturas
     facturas = collection['facturas']
     client.close()
-    return JsonResponse(str(facturas.find()), safe=False)
+    return JsonResponse(facturas, safe=False)
