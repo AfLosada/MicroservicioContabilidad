@@ -33,6 +33,6 @@ def generarReporte(request):
     client = MongoClient(settings.MONGO_CLI)
     db = client.facturas
     facturas = db['facturas']
-    delDia = facturas.find({"fecha" : request.body.fecha})
+    delDia = facturas.find({"fecha" : request.POST.get("fecha", "")})
     client.close()
     return JsonResponse(json.dumps(delDia), safe=False)
