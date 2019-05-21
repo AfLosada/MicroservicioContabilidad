@@ -45,4 +45,4 @@ def generarReporte(request):
         result.append(data)
     client.close()
     print(str(result))
-    return JsonResponse(dumps(result, json_options = RELAXED_JSON_OPTIONS), safe=False)
+    return JsonResponse(json.loads(dumps(result, json_options = RELAXED_JSON_OPTIONS)), safe=False)
