@@ -11,6 +11,7 @@ from django.core import serializers
 from django.conf import settings
 from rest_framework.parsers import JSONParser
 from pymongo import MongoClient
+import json
 
 @csrf_exempt
 # Create your views here.
@@ -28,12 +29,10 @@ def guardarFactura(request):
     return JsonResponse(respo, safe=False)
 
 @csrf_exempt
-def buscarFactura(request):
+def generarReporte(request):
     client = MongoClient(settings.MONGO_CLI)
     db = client.facturas
     facturas = db['facturas']
-    results = []
-    for factura in facturas:
-        results.append(str(factura))
+    delDia = facturas.find({"fecha" : request.body.fecha})
     client.close()
-    return JsonResponse(results, safe=False)
+    return JsonResponse(json.dumps(delDia), safe=False)
