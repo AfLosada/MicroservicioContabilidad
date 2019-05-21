@@ -53,7 +53,7 @@ def generarReporte(request):
         tam = tam+1
         promedio = promedio + data['total']
     promedio = promedio/tam
-    result.append(promedio)
+    result.append(str(promedio))
     client.close()
     print(str(result))
     return JsonResponse(json.loads(dumps(result, json_options=RELAXED_JSON_OPTIONS)), safe=False)
