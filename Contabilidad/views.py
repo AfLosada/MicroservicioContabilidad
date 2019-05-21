@@ -13,6 +13,7 @@ from rest_framework.parsers import JSONParser
 from pymongo import MongoClient
 import json
 import datetime
+from bson.json_util import dumps
 
 @csrf_exempt
 # Create your views here.
@@ -44,4 +45,4 @@ def generarReporte(request):
         result.append(data)
     client.close()
     print(str(result))
-    return JsonResponse(result, safe=False)
+    return JsonResponse(dumps(result), safe=False)
