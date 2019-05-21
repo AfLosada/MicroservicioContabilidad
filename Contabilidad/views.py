@@ -12,6 +12,7 @@ from django.conf import settings
 from rest_framework.parsers import JSONParser
 from pymongo import MongoClient
 import json
+import datetime
 
 @csrf_exempt
 # Create your views here.
@@ -33,7 +34,9 @@ def generarReporte(request):
     client = MongoClient(settings.MONGO_CLI)
     db = client.facturas
     facturas = db['facturas']
-    delDia = facturas.find({"fecha" : request.POST.get("fecha", "")})
+    fechaPrueba = datetime.datetime(2019,11,1)
+    # delDia = facturas.find({"fecha" : request.POST.get("fecha", "")})
+    delDia = facturas.find({"fecha" : fechaPrueba})
     result = []
     for data in delDia:
         result.append(data)
