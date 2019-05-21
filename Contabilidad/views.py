@@ -41,13 +41,19 @@ def generarReporte(request):
     body_unicode = request.body.decode('utf-8')
     body = json.loads(body_unicode) 
     print(fechaPrueba)
-    print(type(body['fecha']))
+    print(datetime.datetime(body['fecha']))
     delDia = facturas.find({"fecha": body['fecha']})
     # delDia = facturas.find({"fecha" : fechaPrueba})
     # # delDia = facturas.find({})
     result = []
+    promedio = 0
+    tam = 0
     for data in delDia:
         result.append(data)
+        tam = tam+1
+        promedio = promedio + data['total']
+    promedio = promedio/tam
+    result.append(promedio)
     client.close()
     print(str(result))
     return JsonResponse(json.loads(dumps(result, json_options=RELAXED_JSON_OPTIONS)), safe=False)
