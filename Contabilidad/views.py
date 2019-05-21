@@ -16,7 +16,7 @@ from pymongo import MongoClient
 # Create your views here.
 def guardarFactura(request):
     client = MongoClient(settings.MONGO_CLI)
-    db = client.facturas_db
+    db = client.facturas
     facturas = db['facturas']
     data = JSONParser().parse(request)
     result = facturas.insert(data)
@@ -30,8 +30,8 @@ def guardarFactura(request):
 @csrf_exempt
 def buscarFactura(request):
     client = MongoClient(settings.MONGO_CLI)
-    collection = client.facturas
-    facturas = collection['facturas'].find({})
+    db = client.facturas
+    facturas = db['facturas']
     results = []
     for factura in facturas:
         results.append(str(factura))
