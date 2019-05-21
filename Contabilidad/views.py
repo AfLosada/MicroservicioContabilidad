@@ -38,9 +38,11 @@ def generarReporte(request):
     db = client.facturas
     facturas = db['facturas']
     fechaPrueba = datetime.datetime(2019, 11, 1)
+    body_unicode = request.body.decode('utf-8')
+    body = json.loads(body_unicode) 
     print(fechaPrueba)
     print(request.POST.get("fecha", "2012-04-23T18:0:0:0"))
-    delDia = facturas.find({"fecha": request.POST.get("fecha", "2012-04-23T18:0:0:0")})
+    delDia = facturas.find({"fecha": body['fecha']})
     # delDia = facturas.find({"fecha" : fechaPrueba})
     # # delDia = facturas.find({})
     result = []
