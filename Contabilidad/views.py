@@ -41,7 +41,7 @@ def generarReporte(request):
     body_unicode = request.body.decode('utf-8')
     body = json.loads(body_unicode) 
     print(fechaPrueba)
-    print(body['fecha'])
+    print(type(body['fecha']))
     delDia = facturas.find({"fecha": body['fecha']})
     # delDia = facturas.find({"fecha" : fechaPrueba})
     # # delDia = facturas.find({})
