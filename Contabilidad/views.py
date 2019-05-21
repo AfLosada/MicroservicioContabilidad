@@ -37,7 +37,7 @@ def generarReporte(request):
     facturas = db['facturas']
     fechaPrueba = datetime.datetime(2019,11,1)
     print(fechaPrueba)
-    delDia = facturas.find({"fecha" : request.POST.__getitem__("fecha")})
+    delDia = facturas.find({"fecha" : request.POST.__getitem__("fecha", "2019-11-01T05:00:00Z")})
     # delDia = facturas.find({"fecha" : fechaPrueba})
     #delDia = facturas.find({})
     result = []
