@@ -34,6 +34,9 @@ def generarReporte(request):
     db = client.facturas
     facturas = db['facturas']
     delDia = facturas.find({"fecha" : request.POST.get("fecha", "")})
+    result = []
+    for data in delDia:
+        result.append(data)
     client.close()
-    print(str(delDia))
-    return JsonResponse(json.dumps(delDia), safe=False)
+    print(str(result))
+    return JsonResponse(result, safe=False)
