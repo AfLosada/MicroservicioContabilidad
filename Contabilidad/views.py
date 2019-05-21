@@ -15,6 +15,7 @@ import json
 import datetime
 from bson.json_util import dumps, RELAXED_JSON_OPTIONS
 
+
 @csrf_exempt
 # Create your views here.
 def guardarFactura(request):
@@ -23,26 +24,27 @@ def guardarFactura(request):
     facturas = db['facturas']
     data = JSONParser().parse(request)
     result = facturas.insert(data)
-    respo ={
+    respo = {
         "MongoObjectID": str(result),
         "Message": "nuevo objeto en la base de datos"
     }
     client.close()
     return JsonResponse(respo, safe=False)
 
+
 @csrf_exempt
 def generarReporte(request):
     client = MongoClient(settings.MONGO_CLI)
     db = client.facturas
     facturas = db['facturas']
-    fechaPrueba = datetime.datetime(2019,11,1)
+    fechaPrueba = datetime.datetime(2019, 11, 1)
     print(fechaPrueba)
-    delDia = facturas.find({"fecha" : request.POST.__getitem__("fecha", "2019-11-01T05:00:00Z")})
+    delDia = facturas.find({"fecha": request.POST.__getitem__("fecha", False)})
     # delDia = facturas.find({"fecha" : fechaPrueba})
-    #delDia = facturas.find({})
+    # # delDia = facturas.find({})
     result = []
     for data in delDia:
         result.append(data)
     client.close()
     print(str(result))
-    return JsonResponse(json.loads(dumps(result, json_options = RELAXED_JSON_OPTIONS)), safe=False)
+    return JsonResponse(json.loads(dumps(result, json_options=RELAXED_JSON_OPTIONS)), safe=False)
